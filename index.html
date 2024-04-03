@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        // Shallow copy
+const originalArray = [{ value: 1 }, { value: 2 }, { value: 3 }];
+const shallowCopyArray = [...originalArray];
+
+shallowCopyArray[0].value = 100;
+
+console.log(originalArray[0].value); // Output: 100
+
+// Deep copy
+function deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+const originalObject = { nestedObject: { value: 1 } };
+const deepCopiedObject = deepCopy(originalObject);
+
+deepCopiedObject.nestedObject.value = 100;
+
+console.log(originalObject.nestedObject.value); // Output: 1
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="wusernameth=device-wusernameth, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        function Accounts(username, password){
+            this.password=password;
+            this.username=username;
+        };
+        let account1 = [
+            new Accounts("1","Nam"),
+            new Accounts("2","Lam"),
+            new Accounts("3","Du ng"),
+            new Accounts("4","Binh"),
+            new Accounts("5","Li nh"),
+            new Accounts("6","Thao"),
+        ];
+        
+        let result=account1.filter(acc=>{
+            return acc.password.includes(" ");
+        })
+        if(result) console.log(result);
+        else console.log("ko co ket qua");
+    </script>
+    </body>
+</html>

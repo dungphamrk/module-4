@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta number="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        function Classes(id, number){
+            this.number=number;
+            this.id=id;
+        };
+        let classes = [
+            new Classes(1,23),
+            new Classes(2,40),
+            new Classes(3,38),
+            new Classes(4,42),
+        ];
+        let newClass= classes.map(classes=>{
+            if(classes.number>40)  classes.number-=10;
+            else if(classes.number<30)  classes.number+=10;
+             return classes;
+        })
+        console.log(newClass);
+    </script>
+    </body>
+</html>

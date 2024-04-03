@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Students(id, name){
+            this.name=name;
+            this.id=id;
+        };
+        let students = [
+            new Students(1,"Nam"),
+            new Students(2,"Lam"),
+            new Students(3,"Dung"),
+            new Students(4,"Binh"),
+            new Students(5,"Linh"),
+            new Students(6,"Thao"),
+        ];
+        students.forEach(student=>{
+            console.log(student)
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <style>
+    *{
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+        font-size: 1vw;
+    }
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+   
+    }
+    section{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;     
+        width: 18%;
+    }
+    .workList{
+        display: flex;
+        justify-content: space-between;
+    }
+    .input-box{
+        height: 5vh;
+    }
+    .input-box p{
+        margin-top:1vh;
+    }
+</style>
+    <body>
+        <main>
+            <section>
+                <h1>Danh sách công việc</h1>
+                <div class="input-box">
+                    <input type="text">
+                    <button class="addBtn" onclick="add()">Thêm </button>
+                </div>
+                <div class="workList">
+                    <div class="checkBox">
+                        <input type="checkbox"> <label>Quét nhà</label>
+                    </div>
+
+                    <a href="javascript:void(0)" onclick="del()"
+                        style="color: red;"><i
+                            class="fa-solid fa-trash"></i></a>
+
+                </div>
+                <hr>
+                <div class="workList">
+                    <div class="checkBox">
+                        <input type="checkbox"> <s>Quét nhà</s>
+                    </div>
+
+                    <a href="javascript:void(0)" onclick="del()"
+                        style="color: red;"><i
+                            class="fa-solid fa-trash"></i></a>
+
+                </div>
+                <hr>
+            </section>
+
+        </main>
+
+        <script>
+            let workList=JSON.parse(localStorage.getItem("works"))||[];
+            let checkBox=document.querySelectorAll(".workList input");
+           function add(){  
+                let inputBox=document.querySelector(".input-box");       
+                let input=document.querySelector("input");  
+        
+                let addBtn=document.querySelector(".addBtn");
+                    if(input.value=="") {
+                        inputBox.innerHTML=`
+                        <input type="text">
+                        <button class="addBtn" onclick="add()">Thêm </button>
+                        <p style="color: red;">Tên công việc không được phép để trống </p>`;
+                        console.log(1);
+                    }else{
+                            
+                    workList.push(input.value);
+                    localStorage.setItem("works",JSON.stringify(workList));
+                    input.textContent=``; 
+                    inputBox.innerHTML=`     
+                    <input type="text">
+                    <button class="addBtn" onclick="add()">Thêm </button>
+                    `
+                    window.location.reload();
+                }
+              };
+            addEventListener("DOMContentLoaded",function(){
+                workList=JSON.parse(localStorage.getItem("works"))||[];
+                workList.map((work,index)=>{
+                    let section=document.querySelector("section");
+                    section.innerHTML+=`  
+                     <div class="workList">
+                        <div class="checkBox">
+                            <input type="checkbox"> <label>${work}</label>
+                        </div>
+    
+                        <a href="javascript:void(0)" onclick="del(${index})"
+                            style="color: red;"><i
+                                class="fa-solid fa-trash"></i></a>
+    
+                    </div>
+                    <hr>
+                    `
+                })
+            });
+            const del=(index)=>{
+               if(confirm("Bạn có chắc là muốn xóa")){
+                workList=JSON.parse(localStorage.getItem("works"))||[];
+                workList.splice(index,1);
+                localStorage.setItem("works",JSON.stringify(workList));
+                window.location.reload();
+               } 
+            }
+        </script>
+        <script src="https://kit.fontawesome.com/a1fe2ce90b.js"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

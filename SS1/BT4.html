@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Books(id, name){
+            this.name=name;
+            this.id=id;
+        };
+        let libary = [
+            new Books(1,"Nam"),
+            new Books(2,"Lam"),
+            new Books(3,"Dung"),
+            new Books(4,"Binh"),
+            new Books(5,"Linh"),
+            new Books(6,"Thao"),
+        ];
+        let findId=+prompt("Nhap vao id muon tim");
+        const result= libary.find(book=>{
+            return book.id==findId;
+        })
+        if(result) console.log(result);
+        else console.log("ko co ket qua");
+    </script>
+</body>
+</html>
