@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let carts = [
+      { id: 1, name: "Áo khoác", quantity: 10, price: 210000 },
+      { id: 2, name: "Quần bò", quantity: 6, price: 380000 },
+      { id: 3, name: "Áo ba lỗ", quantity: 2, price: 40000 },
+
+    ];
+    function changeQuantity(productId, newQuantity, carts) {
+      const product = carts.find((cart) => cart.id === productId);
+      if (product)   product.quantity = newQuantity;
+       else console.log(`Khong tim thay san pham co id ${productId}`);
+      
+    }
+    function removeProduct(productId, carts) {
+      const indexToRemove = carts.find((cart) => cart.id === productId);
+      if (indexToRemove ) {
+        carts.splice(indexToRemove, 1);
+        console.log(carts);
+      } else {
+        console.log(`khong tim thay san pham co id ${productId}`);
+      }
+    }
+    function calculateTotalPrice(carts) {
+       return carts.reduce((result,carts)=>{return result+carts.price},0);
+    }
+    changeQuantity(1, 10, carts);
+    console.log(carts);
+    removeProduct(3, carts);
+    console.log(carts);
+    console.log(calculateTotalPrice(carts));
+  </script>
+</html>
