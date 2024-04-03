@@ -45,35 +45,13 @@
                     <input type="text">
                     <button class="addBtn" onclick="add()">Thêm </button>
                 </div>
-                <div class="workList">
-                    <div class="checkBox">
-                        <input type="checkbox"> <label>Quét nhà</label>
-                    </div>
-
-                    <a href="javascript:void(0)" onclick="del()"
-                        style="color: red;"><i
-                            class="fa-solid fa-trash"></i></a>
-
-                </div>
-                <hr>
-                <div class="workList">
-                    <div class="checkBox">
-                        <input type="checkbox"> <s>Quét nhà</s>
-                    </div>
-
-                    <a href="javascript:void(0)" onclick="del()"
-                        style="color: red;"><i
-                            class="fa-solid fa-trash"></i></a>
-
-                </div>
-                <hr>
+           
             </section>
 
         </main>
 
         <script>
             let workList=JSON.parse(localStorage.getItem("works"))||[];
-            let checkBox=document.querySelectorAll(".workList input");
            function add(){  
                 let inputBox=document.querySelector(".input-box");       
                 let input=document.querySelector("input");  
@@ -84,27 +62,34 @@
                         <input type="text">
                         <button class="addBtn" onclick="add()">Thêm </button>
                         <p style="color: red;">Tên công việc không được phép để trống </p>`;
-                        console.log(1);
+                     
                     }else{
-                            
-                    workList.push(input.value);
-                    localStorage.setItem("works",JSON.stringify(workList));
-                    input.textContent=``; 
-                    inputBox.innerHTML=`     
-                    <input type="text">
-                    <button class="addBtn" onclick="add()">Thêm </button>
-                    `
-                    window.location.reload();
-                }
+                        let newWork={
+                            work:input.value,
+                            status:`label`,
+                        }
+                        workList.push(newWork);
+                        localStorage.setItem("works",JSON.stringify(workList));
+                        input.textContent=``; 
+                        inputBox.innerHTML=`     
+                        <input type="text">
+                        <button class="addBtn" onclick="add()">Thêm </button>
+                        `
+                        window.location.reload();
+                    }
               };
             addEventListener("DOMContentLoaded",function(){
                 workList=JSON.parse(localStorage.getItem("works"))||[];
                 workList.map((work,index)=>{
+                    //render
                     let section=document.querySelector("section");
+                    let status="";
+                    if(work.status==`checked`) status='s'
+                    else status='label'
                     section.innerHTML+=`  
                      <div class="workList">
                         <div class="checkBox">
-                            <input type="checkbox"> <label>${work}</label>
+                            <input type="checkbox" ${work.status}> <${status}>${work.work}</${status}>
                         </div>
     
                         <a href="javascript:void(0)" onclick="del(${index})"
@@ -114,8 +99,22 @@
                     </div>
                     <hr>
                     `
-                })
+               
+                    
+                }); 
+                //setup su kien checkbox
+                let checkBox=document.querySelectorAll(".workList input");
+                    checkBox.forEach((checkBox, checkBoxIndex) => {
+                        checkBox.addEventListener("change",function(){
+                            console.log(checkBoxIndex);
+                            if (this.checked) workList[checkBoxIndex].status = `checked`;
+                            else workList[checkBoxIndex].status = `label`;
+                            localStorage.setItem("works",JSON.stringify(workList));
+                            window.location.reload();    
+                        })
+                    })
             });
+            // sự kiện của nút xóa
             const del=(index)=>{
                if(confirm("Bạn có chắc là muốn xóa")){
                 workList=JSON.parse(localStorage.getItem("works"))||[];
@@ -123,7 +122,7 @@
                 localStorage.setItem("works",JSON.stringify(workList));
                 window.location.reload();
                } 
-            }
+            };
         </script>
         <script src="https://kit.fontawesome.com/a1fe2ce90b.js"
             crossorigin="anonymous"></script>
