@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
     <style>
-        
+        table{
+            border: 1px solid black; 
+             border-spacing: 0px;
+        }
+        td,th{
+            padding: 10px;
+            border: 1px solid black;
+          
+        }
     </style>
-<body>
-    <select name="" id="">  
-        <option value="">Lựa chọn</option>
-        <option value="Age">Tuổi</option>
-        <option value="department">Phòng ban</option>
-    </select>
-    <script>
+    <body>
+        <select class="selection">
+            <option value="none">Lựa chọn</option>
+            <option value="age">Tuổi</option>
+            <option value="department">Phòng ban</option>
+        </select>
+        <table>
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
+        </table>
+        <script>
       let arr= [ 
 
             { id: 1, name: 'Alice', age:25, department: `HR` },  
@@ -27,6 +43,47 @@
             
             { id: 5, name: 'Eve', age: 30, department: 'HR' }
         ];
+        let ageOfArr=new Set();
+        let departmentOfArr=new Set();
+        arr.forEach(element=>{
+            ageOfArr.add(element.age);
+            departmentOfArr.add(element.department);
+        })
+        let select=document.querySelector("select");
+        select.addEventListener("change",function(){
+            let thead=document.querySelector("thead tr");
+            let tbody=document.querySelector("tbody tr");
+            if(this.value=='age'){  
+                thead.innerHTML=``; 
+                tbody.innerHTML=``;
+                ageOfArr.forEach(age=>{
+                    thead.innerHTML+=`
+                        <th>${age}</th>
+                   `
+                    let str=[...arr.filter((item)=> item.age==age)].map(item=>item.name).join(",");
+                    console.log(str);
+                    tbody.innerHTML+=`
+                     <td>${str}</td>
+                    `
+                });  
+            }
+            else if(this.value=='department'){
+                thead.innerHTML=``; 
+                tbody.innerHTML=``;
+                departmentOfArr.forEach(department=>{
+                    thead.innerHTML+=`
+                        <th>${department}</th>
+                   `
+                   let str=[...arr.filter((item)=> item.department==department)].map(item=>item.name).join(",");
+                   tbody.innerHTML+=`
+                    <td>${str}</td>
+                   `
+                });
+               
+            }
+            
+        })
+
     </script>
-</body>
+    </body>
 </html>
