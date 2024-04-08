@@ -1,0 +1,16 @@
+"use strict";
+let num1 = 9;
+let num2 = 123;
+let num3;
+num3 = num1 + num2;
+console.log("Tổng:", num3);
+num3 = num1 - num2;
+console.log("Hiệu:", num3);
+num3 = num1 * num2;
+console.log("Tích:", num3);
+num3 = num1 / num2;
+console.log("Thương:", num3);
+num1 = "123";
+num2 = true;
+num3 = num1 + num2;
+console.log("Tổng với kiểu dữ liệu không phù hợp:", num3);
