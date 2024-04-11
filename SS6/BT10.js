@@ -1,54 +1,78 @@
 "use strict";
 function add(x, y) {
-    if (typeof y === 'string' && typeof x === 'string') {
-        if (isNaN(parseFloat(y)) && isNaN(parseFloat(x))) {
+    if (typeof y === 'string') {
+        if (isNaN(parseFloat(y))) {
             return "Invalid ";
         }
         else {
             y = parseFloat(y);
+        }
+    }
+    if (typeof x === 'string') {
+        if (isNaN(parseFloat(x))) {
+            return "Invalid ";
+        }
+        else {
             x = parseFloat(x);
         }
     }
- 
     return x + y;
 }
 function subtract(x, y) {
-    if (typeof x === 'string'&&typeof y === 'string') {
-        if (isNaN(parseFloat(x))&&isNaN(parseFloat(y))) {
+    if (typeof x === 'string') {
+        if (isNaN(parseFloat(x))) {
             return "Invalid ";
         }
         else {
             x = parseFloat(x);
-              y = parseFloat(y);
         }
     }
-
-    return x - y;
-}
-function multiply(x, y) {
-    if (typeof x === 'string'&&typeof y === 'string') {
-        if (isNaN(parseFloat(x))&&isNaN(parseFloat(y))) {
+    if (typeof y === 'string') {
+        if (isNaN(parseFloat(y))) {
             return "Invalid ";
         }
         else {
-            x = parseFloat(x);
-              y = parseFloat(y);
-        }
-    }
-
-    return x * y;
-}
-function divide(x, y) {
-    if (typeof x === 'string'&&typeof y === 'string') {
-        if (isNaN(parseFloat(x))&&isNaN(parseFloat(y))) {
-            return "Invalid ";
-        }
-        else {
-            x = parseFloat(x);
             y = parseFloat(y);
         }
     }
-
+    return x - y;
+}
+function multiply(x, y) {
+    if (typeof x === 'string') {
+        if (isNaN(parseFloat(x))) {
+            return "Invalid ";
+        }
+        else {
+            x = parseFloat(x);
+        }
+    }
+    if (typeof y === 'string') {
+        if (isNaN(parseFloat(y))) {
+            return "Invalid ";
+        }
+        else {
+            y = parseFloat(y);
+        }
+    }
+    return x * y;
+}
+function divide(x, y) {
+    if (typeof x === 'string') {
+        if (isNaN(parseFloat(x))) {
+            return "Invalid ";
+        }
+        else {
+            x = parseFloat(x);
+        }
+    }
+    if (typeof y === 'string') {
+        if (isNaN(parseFloat(y))) {
+            return "Invalid ";
+        }
+        else {
+            y = parseFloat(y);
+        }
+    }
     if (y === 0) {
         return "Division by zero";
     }
