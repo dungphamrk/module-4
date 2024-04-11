@@ -27,6 +27,10 @@ class Library {
         this.books = [];
     }
     public addBook(book: Book): void {
+        let result=this.books.find((item)=>item.getTitle()==book.getTitle()); 
+        if (result) {
+            result.setQuantity(result.getQuantity()+1);
+        }else
         this.books.push(book);
     }
     public printBooks(): void {

@@ -24,7 +24,12 @@ var Library = /** @class */ (function () {
         this.books = [];
     }
     Library.prototype.addBook = function (book) {
-        this.books.push(book);
+        var result = this.books.find(function (item) { return item.getTitle() == book.getTitle(); });
+        if (result) {
+            result.setQuantity(result.getQuantity() + 1);
+        }
+        else
+            this.books.push(book);
     };
     Library.prototype.printBooks = function () {
         this.books.forEach(function (book, index) {
